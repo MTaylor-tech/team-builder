@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 const MForm = styled.form`
@@ -13,12 +13,19 @@ const MForm = styled.form`
 `;
 
 function MemberForm (props) {
-  const [formState, setFormState] = useState(props.memberToEdit || {
+  const [formState, setFormState] = useState({
     name: '',
     email: '',
-    role: ''
+    role: '',
+    id: Date.now()
   });
-  console.log(formState);
+
+  useEffect(()=>{
+    if (props.memberToEdit!==undefined) {
+      setFormState(props.memberToEdit);
+  }},[props.memberToEdit]);
+
+  console.log(`Editing: ${formState.name}`);
 
   const changeHandler = (event) => {
     setFormState({
@@ -34,9 +41,10 @@ function MemberForm (props) {
     setFormState({
       name: '',
       email: '',
-      role: ''
+      role: '',
+      id: Date.now()
     });
-    alert(`Added member ${name}`);
+    alert(`Saved member ${name}`);
   };
 
   return (
@@ -47,7 +55,7 @@ function MemberForm (props) {
       <input type='email' name='email' value={formState.email} onChange={changeHandler} /><br />
       <label htmlFor='role'>Role</label>
       <input type='text' name='role' value={formState.role} onChange={changeHandler} /><br />
-      <button type='submit'>Add Member</button>
+      <button type='submit'>Save Member</button>
     </MForm>
   );
 }

@@ -13,12 +13,16 @@ const MCard = styled.div`
 `;
 
 function MemberCard (props) {
+  const editMember = () => {
+    props.editFunction(props.member);
+  };
 
   return (
     <MCard>
       <h2 className='headline'>{props.member.name}</h2>
       <p>Email: <a href={`mailto:${props.member.email}`}>{props.member.email}</a></p>
       <p>Role: {props.member.role}</p>
+      <button onClick={editMember}>Edit</button>
     </MCard>
   );
 }

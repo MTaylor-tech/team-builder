@@ -19,16 +19,32 @@ const AppDiv = styled.div`
 
 function App() {
   const [teamState, setTeamState] = useState(teamData);
+  const [memberToEdit, setMemberToEdit] = useState();
 
   const addToTeam = (member) =>  {
-    setTeamState([...teamState, member]);
+    if (teamState.find(person=>person.id===member.id)) {
+      setTeamState(teamState.map(person=>{
+        if (person.id===member.id) {
+          return member;
+        } else {
+          return person;
+        }
+      }));
+    } else {
+      setTeamState([...teamState, member]);
+    }
+  };
+
+  const editMember = (member) => {
+    console.log(`Edit: ${member.name}`);
+    setMemberToEdit(member);
   };
 
   return (
     <AppDiv>
       <h1 className='main-header'>The Team</h1>
-      <MemberForm addFunction={addToTeam} />
-      {teamState.map(person=><MemberCard member={person} key={person.name} />)}
+      {(memberToEdit!==undefined)?<MemberForm memberToEdit={memberToEdit} addFunction={addToTeam} />:<MemberForm addFunction={addToTeam} />}
+      {teamState.map(person=><MemberCard member={person} key={person.id} editFunction={editMember} />)}
       <p></p>
     </AppDiv>
   );
