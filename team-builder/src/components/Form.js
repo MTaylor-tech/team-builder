@@ -6,9 +6,20 @@ const MForm = styled.form`
   width: 50%;
   text-align: center;
   padding: 10px;
+  font-size: 1.3rem;
 
   label:after {
     content: ': ';
+  }
+
+  button {
+    background-color: darkred;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    margin: 15px;
+    font-size: 1.3rem;
+    border-radius: 6px;
   }
 `;
 

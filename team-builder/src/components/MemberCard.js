@@ -6,9 +6,20 @@ const MCard = styled.div`
   width: 50%;
   text-align: center;
   padding: 10px;
+  font-size: 1.3rem;
 
   .headline {
     color: darkred;
+    font-size: 2rem;
+    margin: 10px;
+  }
+
+  button {
+    background-color: darkred;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
   }
 `;
 
