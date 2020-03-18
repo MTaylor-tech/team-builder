@@ -34,17 +34,25 @@ function Team(props) {
   },[props.match.params.id]);
 
   const addToTeam = (member) =>  {
+    let tm = [];
     if (teamMembers.find(person=>person.id===member.id)) {
-      setTeamMembers(teamMembers.map(person=>{
+      tm = teamMembers.map(person=>{
       if (person.id===member.id) {
         return member;
       } else {
         return person;
       }
-    }));
+    });
+      setTeamMembers(tm);
     } else {
-      setTeamMembers([...teamMembers, member]);
+      tm = [...teamMembers, member];
+      setTeamMembers(tm);
     }
+
+    let teamD = {...team, members: tm};
+    setTeam(teamD);
+
+    props.updateFunction(teamD);
   };
 
   const editMember = (member) => {

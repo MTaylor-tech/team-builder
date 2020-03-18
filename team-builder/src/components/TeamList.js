@@ -16,7 +16,7 @@ function TeamList(props) {
 
   return (
     <TList>
-      {teams.map(team=><TeamCard team={team} />)}
+      {teams.map(team=><TeamCard team={team} key={team.id} />)}
     </TList>
   );
 }
