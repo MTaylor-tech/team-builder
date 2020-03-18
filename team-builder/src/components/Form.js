@@ -1,35 +1,43 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+const MForm = styled.form`
+  border: 1px dotted darkred;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+
+  label:after {
+    content: ': ';
+  }
+`;
+
 function MemberForm (props) {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState(props.memberToEdit || {
     name: '',
     email: '',
     role: ''
   });
-
-  const MForm = styled.form`
-    border: 1px dotted darkred;
-    width: 50%;
-    text-align: center;
-    padding: 10px;
-
-    label:after {
-      content: ': ';
-    }
-  `;
+  console.log(formState);
 
   const changeHandler = (event) => {
     setFormState({
       ...formState,
       [event.target.name]: event.target.value
     });
-  }
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
+    let name = formState.name;
     props.addFunction(formState);
-  }
+    setFormState({
+      name: '',
+      email: '',
+      role: ''
+    });
+    alert(`Added member ${name}`);
+  };
 
   return (
     <MForm onSubmit={submitHandler}>

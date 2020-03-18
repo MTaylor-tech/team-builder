@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const MCard = styled.div`
+  border: 1px dotted darkred;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+
+  .headline {
+    color: darkred;
+  }
+`;
+
 function MemberCard (props) {
-
-  const MCard = styled.div`
-    border: 1px dotted darkred;
-    width: 50%;
-    text-align: center;
-    padding: 10px;
-
-    .headline {
-      color: darkred;
-    }
-  `;
 
   return (
     <MCard>
