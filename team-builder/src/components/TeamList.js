@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
 import TeamCard from './TeamCard.js';
 import styled from 'styled-components';
+import TeamForm from './TeamForm.js';
 
 const TList = styled.div`
   display: flex;
@@ -12,11 +12,10 @@ const TList = styled.div`
 `;
 
 function TeamList(props) {
-  const [teams, setTeams] = useState(props.teams);
-
   return (
     <TList>
-      {teams.map(team=><TeamCard team={team} key={team.id} />)}
+      {props.teams.map(team=><TeamCard team={team} key={team.id} />)}
+      <TeamForm {...props} />
     </TList>
   );
 }

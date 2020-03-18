@@ -27,11 +27,10 @@ function Team(props) {
 
   useEffect(() => {
     const id = props.match.params.id;
-    let team = props.teams.find(team=>team.id===id);
-    setTeam(team);
-    setTeamMembers(team.members);
-
-  },[props.match.params.id]);
+    let steam = props.teams.find(fteam=>`${fteam.id}`===id);
+    setTeam(steam);
+    setTeamMembers(steam.members);
+  },[props.match.params.id,props.teams]);
 
   const addToTeam = (member) =>  {
     let tm = [];
